@@ -10,7 +10,7 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/reposit
 #
 # Installing Packages
 #
-RUN apt-get update && apt-get install --assume-yes --no-install-recommends
+RUN apt-get update && apt-get install --assume-yes --no-install-recommends bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev repo rsync flex bison ccache
 
 RUN python3 -m ensurepip \
     && pip3 install --upgrade pip setuptools \
@@ -24,13 +24,10 @@ RUN python3 -m ensurepip \
 # Clone repo and prepare working directory
 #
 RUN git clone https://github.com/JamieHoSzeYui/mango414 /mango414
+RUN cd /mango414
+RUN wget <build script goes here>
 RUN chmod 0777 /mango414
-WORKDIR /root/TESLA/
-
-#
-# Copies session and config (if it exists)
-#
-COPY ./sample_config.env ./userbot.session* ./config.env* /root/userbot/
+WORKDIR /root/mango414/
 
 #
 # Install requirements
