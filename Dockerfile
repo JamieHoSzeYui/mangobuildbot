@@ -1,5 +1,5 @@
-# We're using Alpine Edge
-FROM alpine:edge
+# We're using debian 69
+FROM debian:buster-slim
 
 #
 # We have to uncomment Community repo for some packages
@@ -10,53 +10,7 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/reposit
 #
 # Installing Packages
 #
-RUN apk add --no-cache=true --update \
-    coreutils \
-    bash \
-    build-base \
-    bzip2-dev \
-    curl \
-    figlet \
-    gcc \
-    g++ \
-    git \
-    aria2 \
-    util-linux \
-    libevent \
-    jpeg-dev \
-    libffi-dev \
-    libpq \
-    libwebp-dev \
-    libxml2 \
-    libxml2-dev \
-    libxslt-dev \
-    linux-headers \
-    musl \
-    neofetch \
-    openssl-dev \
-    postgresql \
-    postgresql-client \
-    postgresql-dev \
-    openssl \
-    pv \
-    jq \
-    wget \
-    python3 \
-    python3-dev \
-    readline-dev \
-    sqlite \
-    ffmpeg \
-    sqlite-dev \
-    sudo \
-    chromium \
-    chromium-chromedriver \
-    zlib-dev \
-    jpeg \
-    zip \
-    megatools \
-    nodejs \
-    freetype-dev
-
+RUN apt-get update && apt-get install --assume-yes --no-install-recommends
 
 RUN python3 -m ensurepip \
     && pip3 install --upgrade pip setuptools \
@@ -69,8 +23,8 @@ RUN python3 -m ensurepip \
 #
 # Clone repo and prepare working directory
 #
-RUN git clone -b TESLA https://github.com/JamieHoSzeYui/TESLA /root/TESLA
-RUN mkdir /root/TESLA/bin/
+RUN git clone https://github.com/JamieHoSzeYui/mango414 /mango414
+RUN chmod 0777 /mango414
 WORKDIR /root/TESLA/
 
 #
