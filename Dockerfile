@@ -25,13 +25,11 @@ RUN python3 -m ensurepip \
 #
 RUN git clone https://github.com/JamieHoSzeYui/mango414 /mango414
 RUN cd /mango414
-RUN wget <build script goes here>
+RUN wget <https://raw.githubusercontent.com/JamieHoSzeYui/mangobuildrrrr/master/build.sh>
 RUN chmod 0777 /mango414
 WORKDIR /root/mango414/
 
 #
 # Install requirements
 #
-RUN pip3 install -r requirements.txt
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-CMD ["python3","-m","userbot"]
+CMD ["bash","build.sh"]
